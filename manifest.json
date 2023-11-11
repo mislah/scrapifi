@@ -1,0 +1,33 @@
+{
+    "manifest_version": 3,
+    "name": "Scrapifi",
+    "author": "info@mislah.com",
+    "version": "0.0.1",
+    "description": "Scrape predefined elements from webpages",
+    "permissions": [
+        "clipboardWrite",
+        "commands"
+    ],
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "scripts/content.js"
+            ],
+            "matches": [
+                "https://www.bayut.com/property/*",
+                "https://www.bayut.com/*/property/*"
+            ]
+        }
+    ],
+    "commands": {
+        "set-clip": {
+          "suggested_key": {
+            "default": "Ctrl+Shift+X"
+          },
+          "description": "Copy content to clipboard"
+        }
+    }
+}
