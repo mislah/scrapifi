@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Scrapifi",
     "author": "info@mislah.com",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Scrape predefined elements from webpages",
     "permissions": [
         "clipboardWrite",
@@ -14,6 +14,8 @@
     "content_scripts": [
         {
             "js": [
+                "scripts/schemas.js",
+                "scripts/format.js",
                 "scripts/content.js"
             ],
             "matches": [

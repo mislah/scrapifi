@@ -10,23 +10,23 @@ function clip(text) {
 }
 
 function getData() {
-    return {
-        "url": window.location.href,
-        "price": document.querySelector('[aria-label="Price"]').innerText,
-        "location": document.querySelector('[aria-label="Property header"]').innerText,
-        "area": document.querySelector('[aria-label="Area"]').innerText,
-        "listing": document.querySelector('[aria-label="Reactivated date"]').innerText
+    let data = {
+        'url': window.location.href
     }
+    const schema = schemas.find(element => element.host === window.location.host)['schema'];
+    Object.keys(schema).forEach(key => {
+        data[key] = document.querySelector(schema[key]).innerText;
+    });
+    return data;
 }
 
 chrome.runtime.onMessage.addListener((request) => {
     let data = getData();
-    console.log(data)
     if (request.message === "clip") {
-        outText = ""
-        Object.keys(data).forEach(key => {
-            outText += data[key] + "\t"
+        let outText = ""
+        format.forEach(key => {
+            outText += (data[key] ?? "") + "\t"
         });
-        clip(outText.replace(/\t$/,""))
+        clip(outText.replace(/\t$/, ""))
     }
 });
