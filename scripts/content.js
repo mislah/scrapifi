@@ -17,6 +17,11 @@ function getData() {
     Object.keys(schema).forEach(key => {
         data[key] = document.querySelector(schema[key]).innerText;
     });
+    const rules = schemas.find(element => element.host === window.location.host)['rules'];
+    Object.keys(rules).forEach(key => {
+        data = {...data, ...rules[key](data)};
+    });
+    console.log(data);
     return data;
 }
 

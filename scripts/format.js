@@ -1,7 +1,7 @@
 const format = [
-    "City",
-    "location",
-    "Neighbourhood",
+    "city",
+    "address",
+    "locality",
     "",
     "",
     "area",
@@ -19,3 +19,5 @@ const format = [
     "url",
     "date"
 ]
+
+// Refer schemas for available fields
